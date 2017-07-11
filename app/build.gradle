@@ -10,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders = [umeng_key: "5964465307fe6511c50004bf"]
     }
     buildTypes {
         release {
@@ -17,14 +18,29 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors {
+        HiGank {
+            setDimension("10000")//渠道号
+        }
+    }
+
+    productFlavors.all { flavor ->
+        flavor.manifestPlaceholders = [market: flavor.getName()]
+        resValue(["string", "channel", flavor.getName()])
+        resValue(["string", "updatechannel", flavor.getDimension()])
+    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
     testCompile 'junit:junit:4.12'
+
+    compile 'com.jakewharton:butterknife:5.1.1'
+    compile 'com.umeng.analytics:analytics:latest.integration'
 }

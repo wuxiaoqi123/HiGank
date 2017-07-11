@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/launch_start_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.tlkg.welcome.higank.LaunchActivity">
+
+    <ImageView
+        android:id="@+id/launch_img_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/welcome" />
+</RelativeLayout>
