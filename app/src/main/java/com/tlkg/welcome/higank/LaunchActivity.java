@@ -24,7 +24,7 @@ public class LaunchActivity extends BaseActivity {
             public void run() {
                 toMainActivity();
             }
-        }, 800);
+        }, 2000);
     }
 
 
