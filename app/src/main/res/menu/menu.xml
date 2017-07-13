@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/project"
+        android:icon="@mipmap/ic_launcher_round"
+        android:title="项目地址" />
+
+    <item
+        android:id="@+id/down"
+        android:icon="@mipmap/ic_launcher_round"
+        android:title="扫码下载" />
+
+    <item
+        android:id="@+id/share"
+        android:icon="@mipmap/ic_launcher_round"
+        android:title="分享好友" />
+
+    <item
+        android:id="@+id/guanyu"
+        android:icon="@mipmap/ic_launcher_round"
+        android:title="关于 Hi,干货" />
+
+    <item
+        android:id="@+id/exit"
+        android:icon="@mipmap/ic_launcher_round"
+        android:title="退出应用" />
+</menu>
