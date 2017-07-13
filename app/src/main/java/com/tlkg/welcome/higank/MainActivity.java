@@ -1,40 +1,60 @@
 package com.tlkg.welcome.higank;
 
-import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.widget.Toast;
 
-import butterknife.ButterKnife;
+import com.tlkg.welcome.higank.base.BaseActivity;
+import com.tlkg.welcome.higank.statusbar.StatusBarUtil;
+
 import butterknife.InjectView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @InjectView(R.id.drawerlayout)
     DrawerLayout drawerLayout;
+
+    @InjectView(R.id.status_bar_view)
+    View statusBarView;
 
     @InjectView(R.id.ll_title_menu)
     FrameLayout titleMenu;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.inject(this);
+    protected int getContentView() {
+        return R.layout.activity_main;
+    }
 
+    @Override
+    protected void initWindow() {
+        StatusBarUtil.setTranslucentForDrawerLayout(this, drawerLayout, 0);
+        ViewGroup.LayoutParams layoutParams = statusBarView.getLayoutParams();
+        layoutParams.height = StatusBarUtil.getStatusBarHeight(MainActivity.this);
+        statusBarView.requestLayout();
+    }
+
+    @Override
+    protected void initData() {
         titleMenu.setOnClickListener(this);
     }
+
+
+    private long lastClickTime;
 
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(Gravity.START)) {
             drawerLayout.closeDrawer(Gravity.START);
         } else {
-            super.onBackPressed();
+            if (System.currentTimeMillis() - lastClickTime > 2000) {
+                Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
+                lastClickTime = System.currentTimeMillis();
+            } else {
+                super.onBackPressed();
+            }
         }
     }
 

@@ -28,8 +28,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(getContentView());
-        initWindow();
         ButterKnife.inject(this);
+        initWindow();
         initWidget();
         initData();
 
