@@ -72,7 +72,7 @@
             android:layout_height="56dp"
             android:layout_alignParentBottom="true"
             app:bb_activeTabColor="@color/white"
-            app:bb_inActiveTabColor="@color/white"
+            app:bb_inActiveTabColor="@color/gray"
             app:bb_showShadow="false"
             app:bb_tabXmlResource="@xml/bottombar_tabs"
             app:bb_tabletMode="false" />
