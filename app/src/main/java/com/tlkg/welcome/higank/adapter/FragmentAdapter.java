@@ -5,7 +5,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
 
+import com.tlkg.welcome.higank.base.BaseFragment;
 import com.tlkg.welcome.higank.fragment.RecommendFragment;
+
+import java.util.List;
 
 /**
  * Created by wuxiaoqi on 2017/7/14.
@@ -13,24 +16,26 @@ import com.tlkg.welcome.higank.fragment.RecommendFragment;
 
 public class FragmentAdapter extends FragmentStatePagerAdapter {
 
+    private List<BaseFragment> mFragments;
 
-    public FragmentAdapter(FragmentManager fm) {
+    public FragmentAdapter(FragmentManager fm, List<BaseFragment> fragments) {
         super(fm);
+        mFragments = fragments;
     }
 
     @Override
     public Fragment getItem(int position) {
-        Fragment fragment = null;
-//        switch (position) {
-//            case 0:
-        Log.i("wxq", "getItem" + position);
-        fragment = new RecommendFragment();
-//        }
-        return fragment;
+        if (mFragments == null) {
+            throw new IllegalArgumentException("mFragments is null!!!");
+        }
+        return mFragments.get(position);
     }
 
     @Override
     public int getCount() {
-        return 4;
+        if (mFragments == null) {
+            return 0;
+        }
+        return mFragments.size();
     }
 }

@@ -17,8 +17,16 @@ import com.roughike.bottombar.OnTabSelectListener;
 import com.tlkg.welcome.higank.adapter.FragmentAdapter;
 import com.tlkg.welcome.higank.app.MyApp;
 import com.tlkg.welcome.higank.base.BaseActivity;
+import com.tlkg.welcome.higank.base.BaseFragment;
+import com.tlkg.welcome.higank.fragment.LiteratureFragment;
+import com.tlkg.welcome.higank.fragment.RecommendFragment;
+import com.tlkg.welcome.higank.fragment.WatercressFragment;
+import com.tlkg.welcome.higank.fragment.WelfareFragment;
 import com.tlkg.welcome.higank.statusbar.StatusBarUtil;
 import com.umeng.analytics.MobclickAgent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.InjectView;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -45,6 +53,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @InjectView(R.id.vp_content)
     ViewPager vpContent;
+
+    private List<BaseFragment> mFragments = new ArrayList<>();
+    private FragmentAdapter mFragmentAdapter;
 
     @Override
     protected int getContentView() {
@@ -112,8 +123,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void initData() {
         titleMenu.setOnClickListener(this);
-        vpContent.setAdapter(new FragmentAdapter(getSupportFragmentManager()));
-        vpContent.setCurrentItem(0);
+        mFragments.add(new RecommendFragment());
+        mFragments.add(new WelfareFragment());
+        mFragments.add(new LiteratureFragment());
+        mFragments.add(new WatercressFragment());
+        mFragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), mFragments);
+        vpContent.setAdapter(mFragmentAdapter);
+        vpContent.setCurrentItem(0, false);
 
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
@@ -121,15 +137,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 switch (tabId) {
                     case R.id.tab_recommend://推荐
                         MyApp.showToast("推荐");
+                        vpContent.setCurrentItem(0, false);
                         break;
                     case R.id.tab_welfare://福利
                         MyApp.showToast("福利");
+                        vpContent.setCurrentItem(1, false);
                         break;
                     case R.id.tab_literature://文学
                         MyApp.showToast("文学");
+                        vpContent.setCurrentItem(2, false);
                         break;
                     case R.id.tab_watercress://豆瓣
                         MyApp.showToast("豆瓣");
+                        vpContent.setCurrentItem(3, false);
                         break;
                     default:
                         break;
