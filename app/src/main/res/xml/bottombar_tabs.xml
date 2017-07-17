@@ -3,21 +3,21 @@
     <tab
         barColorWhenSelected="@color/colorPrimary"
         icon="@drawable/titlebar_menu"
-        id="@+id/tab_recents"
+        id="@+id/tab_recommend"
         title="推荐" />
     <tab
         barColorWhenSelected="@color/colorPrimary"
         icon="@drawable/titlebar_menu"
-        id="@+id/tab_favorites"
+        id="@+id/tab_welfare"
         title="福利" />
     <tab
         barColorWhenSelected="@color/colorPrimary"
         icon="@drawable/titlebar_menu"
-        id="@+id/tab_nearby"
+        id="@+id/tab_literature"
         title="文学" />
     <tab
         barColorWhenSelected="@color/colorPrimary"
         icon="@drawable/titlebar_menu"
-        id="@+id/tab_friends"
+        id="@+id/tab_watercress"
         title="豆瓣" />
 </tabs>

@@ -1,14 +1,12 @@
 package com.tlkg.welcome.higank.app;
 
-import android.app.Application;
-
 /**
  * Created by wuxiaoqi on 2017/7/11.
  */
 
-public class HiGankApplication extends BaseApplication {
+public class MyApp extends BaseApplication {
 
-    private static HiGankApplication hiGankApplication;
+    private static MyApp hiGankApplication;
 
     @Override
     public void onCreate() {
@@ -16,7 +14,7 @@ public class HiGankApplication extends BaseApplication {
         hiGankApplication = this;
     }
 
-    public static HiGankApplication getInstance() {
+    public static MyApp getInstance() {
         return hiGankApplication;
     }
 }

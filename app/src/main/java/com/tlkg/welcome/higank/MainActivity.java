@@ -1,9 +1,10 @@
 package com.tlkg.welcome.higank;
 
+import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +13,9 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.roughike.bottombar.BottomBar;
+import com.roughike.bottombar.OnTabSelectListener;
+import com.tlkg.welcome.higank.adapter.FragmentAdapter;
+import com.tlkg.welcome.higank.app.MyApp;
 import com.tlkg.welcome.higank.base.BaseActivity;
 import com.tlkg.welcome.higank.statusbar.StatusBarUtil;
 import com.umeng.analytics.MobclickAgent;
@@ -38,6 +42,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @InjectView(R.id.bottomBar)
     BottomBar bottomBar;
+
+    @InjectView(R.id.vp_content)
+    ViewPager vpContent;
 
     @Override
     protected int getContentView() {
@@ -105,6 +112,30 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void initData() {
         titleMenu.setOnClickListener(this);
+        vpContent.setAdapter(new FragmentAdapter(getSupportFragmentManager()));
+        vpContent.setCurrentItem(0);
+
+        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
+            @Override
+            public void onTabSelected(@IdRes int tabId) {
+                switch (tabId) {
+                    case R.id.tab_recommend://推荐
+                        MyApp.showToast("推荐");
+                        break;
+                    case R.id.tab_welfare://福利
+                        MyApp.showToast("福利");
+                        break;
+                    case R.id.tab_literature://文学
+                        MyApp.showToast("文学");
+                        break;
+                    case R.id.tab_watercress://豆瓣
+                        MyApp.showToast("豆瓣");
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
     }
 
 

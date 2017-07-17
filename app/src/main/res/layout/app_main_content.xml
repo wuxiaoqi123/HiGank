@@ -38,6 +38,14 @@
                 android:src="@drawable/titlebar_menu" />
         </FrameLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Hi,干货"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -55,15 +63,14 @@
     </android.support.v7.widget.Toolbar>
 
     <RelativeLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <android.support.v4.view.ViewPager
             android:id="@+id/vp_content"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@color/white"
+            android:layout_height="match_parent"
             android:descendantFocusability="blocksDescendants" />
 
         <com.roughike.bottombar.BottomBar
