@@ -8,11 +8,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.tlkg.welcome.higank.R;
+import com.tlkg.welcome.higank.app.MyApp;
 import com.tlkg.welcome.higank.base.BaseFragment;
+import com.tlkg.welcome.higank.load.BannerImageLoader;
+import com.youth.banner.Banner;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import bean.TurnPictureBean;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import http.HttpClient;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
@@ -24,12 +30,18 @@ import rx.schedulers.Schedulers;
 
 public class RecommendFragment extends BaseFragment {
 
+    private static String TAG = "RecommendFragment";
+
+    Banner banner;
+
+    private ArrayList<String> bannerImgs;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recommend, null);
-        Log.i("wxq", "onCreateView");
+        Log.i(TAG, "onCreateView");
+        banner = (Banner) view.findViewById(R.id.banner);
         initData();
         return view;
     }
@@ -46,13 +58,22 @@ public class RecommendFragment extends BaseFragment {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("wxq","错误 :"+e.toString());
+                        MyApp.showToast(e.getMessage());
                     }
 
                     @Override
                     public void onNext(TurnPictureBean turnPictureBean) {
-                        List<TurnPictureBean.ResultBeanXXXXXXXXXXXXXXXXX.FocusBean.ResultBeanXXXXXXXXXXXXX> result = turnPictureBean.getResult().getFocus().getResult();
-                        Log.i("wxq", result.toString());
+                        List<TurnPictureBean.ResultBeanXXXXXXXXXXXXXXXXX.FocusBean.ResultBeanXXXXXXXXXXXXX> result =
+                                turnPictureBean.getResult().getFocus().getResult();
+                        if (bannerImgs == null) {
+                            bannerImgs = new ArrayList<String>();
+                        }
+                        bannerImgs.clear();
+                        for (int i = 0; i < result.size(); i++) {
+                            Log.i("wxq", result.get(i).getRandpic());
+                            bannerImgs.add(result.get(i).getRandpic());
+                        }
+                        banner.setImages(bannerImgs).setImageLoader(new BannerImageLoader()).start();
                     }
                 });
     }

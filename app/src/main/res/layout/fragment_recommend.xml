@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <TextView
+    <com.youth.banner.Banner
+        android:id="@+id/banner"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Hello Android" />
-</LinearLayout>
+        android:layout_height="133dp"
+        android:background="@drawable/img_two_bi_one"
+        app:image_scale_type="center_crop"
+        app:indicator_drawable_selected="@drawable/banner_red"
+        app:indicator_drawable_unselected="@drawable/banner_grey"
+        app:delay_time="4000"
+        app:indicator_height="9dp"
+        app:indicator_margin="3dp"
+        app:indicator_width="9dp"
+        app:is_auto_play="true" />
+</RelativeLayout>
