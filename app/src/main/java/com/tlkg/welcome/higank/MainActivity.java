@@ -22,7 +22,9 @@ import com.tlkg.welcome.higank.fragment.LiteratureFragment;
 import com.tlkg.welcome.higank.fragment.RecommendFragment;
 import com.tlkg.welcome.higank.fragment.WatercressFragment;
 import com.tlkg.welcome.higank.fragment.WelfareFragment;
+import com.tlkg.welcome.higank.listener.ImpOnPageChangeListener;
 import com.tlkg.welcome.higank.statusbar.StatusBarUtil;
+import com.tlkg.welcome.higank.widget.MyViewPager;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
@@ -52,7 +54,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     BottomBar bottomBar;
 
     @InjectView(R.id.vp_content)
-    ViewPager vpContent;
+    MyViewPager vpContent;
 
     private List<BaseFragment> mFragments = new ArrayList<>();
     private FragmentAdapter mFragmentAdapter;
@@ -129,7 +131,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mFragments.add(new WatercressFragment());
         mFragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), mFragments);
         vpContent.setAdapter(mFragmentAdapter);
-        vpContent.setCurrentItem(0, false);
+//        vpContent.setScroll(false);
+//        vpContent.setCurrentItem(0, false);
 
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
@@ -154,6 +157,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     default:
                         break;
                 }
+            }
+        });
+        vpContent.addOnPageChangeListener(new ImpOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                bottomBar.selectTabAtPosition(position);
             }
         });
     }

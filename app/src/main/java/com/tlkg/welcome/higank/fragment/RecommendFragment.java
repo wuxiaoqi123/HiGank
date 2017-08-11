@@ -12,6 +12,7 @@ import com.tlkg.welcome.higank.app.MyApp;
 import com.tlkg.welcome.higank.base.BaseFragment;
 import com.tlkg.welcome.higank.load.BannerImageLoader;
 import com.youth.banner.Banner;
+import com.youth.banner.listener.OnBannerClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,7 +71,6 @@ public class RecommendFragment extends BaseFragment {
                         }
                         bannerImgs.clear();
                         for (int i = 0; i < result.size(); i++) {
-                            Log.i("wxq", result.get(i).getRandpic());
                             bannerImgs.add(result.get(i).getRandpic());
                         }
                         banner.setImages(bannerImgs).setImageLoader(new BannerImageLoader()).start();
